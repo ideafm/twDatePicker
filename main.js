@@ -3,21 +3,19 @@
         currentMonth = new Date(d.getFullYear(), d.getMonth(), 1),
         monthNames = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
         dayNames = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'],
-        calendar = '';
+        calendar = '',
+        selectStyle = '';
 
     function TwDatePicker(){
 
-
-
         this.render = function(){
-
+            $('#calendar').html(createTable());
+            calendar = '';
         }
-
-
     }
 
     function createTable(){
-
+        calendar += '<div>' + monthNames[currentMonth.getMonth()] + '</div>'
         calendar += '<table><tr>';
         for(var i = 0; i <= dayNames.length - 1; i++){
             calendar += '<th>' + dayNames[i] + '</th>';
@@ -30,7 +28,8 @@
         }
 
         while(d.getMonth() == currentMonth.getMonth()){
-            calendar += '<td>' + currentMonth.getDate() + '</td>';
+            (d.getDate() == currentMonth.getDate())? selectStyle = 'style="background: green"' : selectStyle = '';
+            calendar += '<td ' + selectStyle + '>' + currentMonth.getDate() + '</td>';
             currentMonth.setDate(currentMonth.getDate()+1);
             if(getDay(currentMonth) == 0) calendar += '</tr><tr>';
         }
@@ -52,9 +51,18 @@
         return day - 1;
     }
 
-    //createTable();
-    $('#calendar').html(createTable());
-    var twDatePicker = new TwDatePicker();
+    $('#n').click(function(){
+        d.setDate(1);
+        d.setMonth(d.getMonth()+1);
+        currentMonth = new Date(d.getFullYear(), d.getMonth(), 1);
+        twDatePicker.render();
+    })
 
+
+
+    //createTable();
+
+    var twDatePicker = new TwDatePicker();
+    twDatePicker.render();
     console.log(twDatePicker);
 })(jQuery)
