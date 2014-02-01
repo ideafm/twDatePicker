@@ -12,8 +12,10 @@
 
         this.elem = name;
 
-        this.render = function(el){
-            el.html(createTable());
+        this.render = function(){
+            this.elem.find('.tw-datepicker-year').html(currentMonth.getFullYear());
+            this.elem.find('.tw-datepicker-controls span').html(monthNames[currentMonth.getMonth()]);
+            this.elem.find('.tw-datepicker-calendar').html(createTable());
             calendar = '';
         }
 
@@ -21,11 +23,17 @@
             d.setDate(1);
             d.setMonth(d.getMonth()+1);
             currentMonth = new Date(d.getFullYear(), d.getMonth(), 1);
-            this.render(this.elem);
+            this.render();
+        }
+
+        this.prev = function(){
+            d.setDate(1);
+            d.setMonth(d.getMonth()-1);
+            currentMonth = new Date(d.getFullYear(), d.getMonth(), 1);
+            this.render();
         }
 
         function createTable(){
-            calendar += '<div>' + monthNames[currentMonth.getMonth()] + '</div>'
             calendar += '<table><tr>';
             for(var i = 0; i <= dayNames.length - 1; i++){
                 calendar += '<th>' + dayNames[i] + '</th>';
@@ -53,7 +61,6 @@
             }
 
             calendar += '</tr></table>';
-            calendar += '<button id="n" class="asd" style="margin: 0 auto; display: block;">next month</button>';
             return calendar;
         }
 
@@ -74,11 +81,14 @@
 
     //createTable();
     $.fn.twDatePicker = function(){
+        var makeup = '<div class="tw-datepicker"><div class="tw-datepicker-year"></div><div class="tw-datepicker-controls"><a class="prev" href="javascript:void(0)"><</a><a class="next" href="javascript:void(0)">></a><span></span></div><div class="tw-datepicker-calendar"></div></div>';
+        $(this).append(makeup);
         var twDatePicker = new TwDatePicker(this);
-        twDatePicker.render(this);
-        $('.asd', this).on('click', function(){
-            twDatePicker.next();
-        })
+        twDatePicker.render();
+        $('.prev, .next', this).click(function(e){
+            (e.target.className == 'next') ? twDatePicker.next() : twDatePicker.prev();
+        });
+
         console.log(twDatePicker);
     }
 })(jQuery)
