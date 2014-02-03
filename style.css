@@ -1,9 +1,52 @@
-#calendar {
-  margin: 50px auto;
-  width: 300px;
-}
 table,
 td,
 th {
   border: 1px solid #000;
+}
+.tw-datepicker {
+  width: 200px;
+  position: absolute;
+  background: #add8e6;
+  z-index: 1000;
+  display: none;
+}
+.tw-datepicker .tw-datepicker-year {
+  text-align: center;
+}
+.tw-datepicker .tw-datepicker-controls {
+  text-align: center;
+}
+.tw-datepicker .tw-datepicker-controls .prev {
+  float: left;
+}
+.tw-datepicker .tw-datepicker-controls .next {
+  float: right;
+}
+.tw-datepicker .tw-datepicker-controls span {
+  display: block;
+  padding: 0 20px;
+}
+.tw-datepicker .tw-datepicker-calendar table {
+  width: 100%;
+}
+.tw-datepicker .tw-datepicker-calendar table td,
+.tw-datepicker .tw-datepicker-calendar table th {
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  vertical-align: middle;
+}
+.tw-datepicker .tw-datepicker-calendar table a {
+  display: block;
+  color: #000;
+  text-decoration: none;
+}
+.tw-datepicker .tw-datepicker-calendar table a.selected {
+  background: #f08080;
+}
+.tw-datepicker .tw-datepicker-calendar table a.today {
+  background: #90ee90;
+}
+.tw-datepicker-wrap {
+  position: relative;
 }
