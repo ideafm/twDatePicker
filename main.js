@@ -5,13 +5,25 @@
         var d = new Date(),
             today = new Date(),
             currentMonth = new Date(d.getFullYear(), d.getMonth(), 1),
-            monthNames = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
-            dayNames = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'],
+            monthNamesRu = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
+            monthNamesEn = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+            dayNamesRu = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'],
+            dayNamesEn = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+            monthNames,
+            dayNames,
             calendar = '',
             selectStyle = '',
             self = this,
             selectDate = today,
             formattedDate;
+
+        if(options.lang == 'ru') {
+            monthNames = monthNamesRu;
+            dayNames = dayNamesRu;
+        } else {
+            monthNames = monthNamesEn;
+            dayNames = dayNamesEn;
+        }
 
         this.elem = element;
 
@@ -61,7 +73,7 @@
             if($(options.to).is('input'))
                 $(options.to).val(formattedDate);
             else
-                self.elem.find('.tw-datepicker-selected-date').html(formattedDate);
+                $('.tw-datepicker-selected-date').html(formattedDate);
 
             $('body').trigger('click');
         }
@@ -99,15 +111,17 @@
 
             calendar += '</tr></table>';
 
-
-
             return calendar;
         }
 
         function getDay(fromDate){
-            var day = fromDate.getDay();
-            if (day == 0) day = 7;
-            return day - 1;
+            if(options.lang == 'ru'){
+                var day = fromDate.getDay();
+                if (day == 0) day = 7;
+                return day - 1;
+            } else {
+                return fromDate.getDay();
+            }
         }
     }
 
@@ -115,7 +129,8 @@
         var posFix, makeup, settings, toAppend;
         var defaultOptions = {
             'separator' : null,
-            'to' : null
+            'to' : null,
+            'lang': 'ru',
         };
 
         if($(this).is('input')){
@@ -124,8 +139,6 @@
         }else{
             toAppend = $(this);
         }
-
-
 
         posFix = $(this).css('position');
         if(posFix != 'fixed' || posFix != 'absolute' || posFix != 'relative') $(this).css('position', 'relative');
@@ -148,8 +161,7 @@
         toAppend.append(makeup);
 
 
-
-        $('.tw-datepicker').css('top', $(this).outerHeight()).on('click', function(e){
+        $('.tw-datepicker').css({'top': $(this).outerHeight(), 'left': 0}).on('click', function(e){
             e.stopPropagation();
         })
 
@@ -169,5 +181,5 @@
 })(jQuery)
 
 $(window).load(function(){
-    $('#calendar').twDatePicker({separator: '/', to: '.asd'});
+    $('#calendar').twDatePicker({separator: '/', to: $('.asd'), lang: 'en'});
 })
