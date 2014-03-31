@@ -1,52 +1,68 @@
-table,
-td,
-th {
-  border: 1px solid #000;
-}
 .tw-datepicker {
-  width: 200px;
-  position: absolute;
-  background: #add8e6;
-  z-index: 1000;
-  display: none;
+    width: auto;
+    position: absolute;
+    background: white;
+    z-index: 1000;
+    display: none;
+    color: black;
+    padding: 5px;
+    border: 1px solid #d3d3d3;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
 }
 .tw-datepicker .tw-datepicker-year {
-  text-align: center;
+    text-align: center;
 }
 .tw-datepicker .tw-datepicker-controls {
-  text-align: center;
+    text-align: center;
+}
+.tw-datepicker .tw-datepicker-controls a {
+    color: black;
+    text-decoration: none;
 }
 .tw-datepicker .tw-datepicker-controls .prev {
-  float: left;
+    float: left;
 }
 .tw-datepicker .tw-datepicker-controls .next {
-  float: right;
+    float: right;
 }
 .tw-datepicker .tw-datepicker-controls span {
-  display: block;
-  padding: 0 20px;
+    display: block;
+    padding: 0 20px;
 }
 .tw-datepicker .tw-datepicker-calendar table {
-  width: 100%;
+    width: 100%;
 }
 .tw-datepicker .tw-datepicker-calendar table td,
 .tw-datepicker .tw-datepicker-calendar table th {
-  padding: 0;
-  margin: 0;
-  text-align: center;
-  vertical-align: middle;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    vertical-align: middle;
 }
 .tw-datepicker .tw-datepicker-calendar table a {
-  display: block;
-  color: #000;
-  text-decoration: none;
+    display: block;
+    color: #000;
+    text-decoration: none;
+    padding: 3px 8px;
 }
 .tw-datepicker .tw-datepicker-calendar table a.selected {
-  background: #f08080;
+    background: #006dcc;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    color: white;
 }
 .tw-datepicker .tw-datepicker-calendar table a.today {
-  background: #90ee90;
+    background: #90ee90;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
 }
 .tw-datepicker-wrap {
-  position: relative;
+    position: relative;
+}
+.tw-disabled-date {
+    color: #aaaaaa;
 }

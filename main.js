@@ -79,7 +79,7 @@
         }
 
         function createTable(){
-            calendar += '<table><tr>';
+            calendar += '<table class="tw-datepicker-table"><tr>';
             for(var i = 0; i <= dayNames.length - 1; i++){
                 calendar += '<th>' + dayNames[i] + '</th>';
             }
@@ -87,7 +87,7 @@
 
             for(var i = 0; i < getDay(currentMonth); i++){
                 var lastMonth = new Date(d.getFullYear(), d.getMonth(), - getDay(currentMonth) + i + 1 );
-                calendar += '<td style="background: grey">' + lastMonth.getDate() + '</td>';
+                calendar += '<td class="tw-disabled-date">' + lastMonth.getDate() + '</td>';
             }
 
             while(d.getMonth() == currentMonth.getMonth()){
@@ -105,7 +105,7 @@
             if(getDay(currentMonth) != 0){
                 for(var i = getDay(currentMonth); i <= 6; i++){
                     var nextMonth = new Date(d.getFullYear(), d.getMonth() + 1, - getDay(currentMonth) + i + 1);
-                    calendar += '<td style="background: grey">' + nextMonth.getDate() + '</td>';
+                    calendar += '<td class="tw-disabled-date">' + nextMonth.getDate() + '</td>';
                 }
             }
 
